@@ -1,0 +1,320 @@
+\documentclass[10pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\author{Hugo Laviec}
+\title{Mécanique des fluides}
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter*{Introduction}
+
+\chapter{Fluides parfaits}
+
+On considère le fluide comme un milieu continu, c'est-à-dire que tout volume élémentaire de fluide sera toujours suffisamment grand pour contenir un grand nombre de molécules.\\
+On utilisera la dénomination de particules de fluides pour parler de ces volumes élémentaires.\\
+
+La description d'un fluide en mouvement se fait à l'aide de quantités vectorielles comme la vitesse $\mathbf{v}=\mathbf{v}(x,y,z,t)$ ainsi que de quantités scalaires comme la pression $p(x,y,z,t)$ et la densité $\rho(x,y,z,t)$.\\
+
+On suppose ici que la vitesse $\mathbf{v}(x,y,z,t)$ est la vitesse en un point fixé de l'espace et à un certain temps $t$. On adopte un point de vue Eulérien de la description du fluide. 
+
+\section{Euler vs Lagrange}
+
+Il existe deux formalismes pour décrire la dynamique d'un fluide : le point de vue Lagrangien et le point de vue Eulerien. Ces deux formalismes permettent de décrire le fluide de manière différente et peuvent être reliés lors du calcul de l'accélération dans un fluide.
+
+
+\subsection{Lagrange}
+
+Le point de vue de Lagrange est celui que l'on adopte lorsque l'on étudie le mouvement des corps ponctuels. C'est-à-dire que l'on va suivre la particule de fluide dans son mouvement à partir d'une position d'origine connue.\\
+Soit $\mathbf{X}$ la position connue de la particule à $t=0$ (temps arbitraire). La position de la particule de fluide à un instant $t>0$ est quant à elle notée \[\ \mathbf{x}=\mathbf{x}(\mathbf{X},t) \]\ telle que \[\ \mathbf{x}(\mathbf{X},0)=\mathbf{X} \]\ Ce qui veut dire que la position de la particule à $t=0$ est bien sa position initiale.
+
+L'approche de Lagrange est simple pour définir la vitesse de la particule de fluide \[\ \mathbf{v}(\mathbf{X},t) = \frac{\partial x}{\partial t}\bigg |_{\mathbf{X}}(\mathbf{X},t) \]\
+
+où $\big |_{\mathbf{X}}$ veut dire que la dérivée est prise avec la position initiale fixée.\\
+De même pour l'accélération 
+\[\ \mathbf{a}(\mathbf{X},t) = \frac{\partial^2 x}{\partial t^2}\bigg |_{\mathbf{X}}(\mathbf{X},t) \]\
+
+Exemple : 
+
+\subsection{Euler}
+
+Le point de vue d'Euler consiste à mesurer une grandeur physique (température, vitesse etc.) à des points fixes de l'espace et à des temps donnés.\\
+On ne cherche plus à associer un état connu à un instant initial à chaque particule.\\
+
+On sait qu'une particule de fluide a telle température à tel endroit mais on ne connaît rien sur son passé et son futur. Le point de vue Eulerien permet de dresser un champ (scalaire ou vectoriel) associé à $t$ donné pour une certaine grandeur physique.\\
+
+On définit alors la vitesse comme \[\ \mathbf{v}=\mathbf{v}(\mathbf{x},t) \]\ où $\mathbf{x}$ est la position de la particule à l'instant $t$. La vitesse en un point et un instant donnés est égale à la dérivée temporelle de la position d'une particule de fluide passant à cet endroit et à cet instant précis \[\ \mathbf{v}(\mathbf{x},t)= \frac{\partial \mathbf{x}}{\partial t}\bigg |_{\mathbf{X}} \]\
+
+\section{Trajectoires et lignes de courant}
+
+Ces deux notions retranscrivent bien la différence des deux points de vue présentés au dessus.\\
+
+La trajectoire représente les différentes positions prises par une particule au cours de son mouvement. On ne s'intéresse qu'à la position d'une particule à différents moments. Approche de Lagrange \[\ \frac{d \mathbf{x}}{dt}=\mathbf{v}(\mathbf{x},t) \]\
+
+La ligne de courant représente le mouvement du fluide à un instant donné. Elle regroupe plusieurs particules différentes à un même instant.\\
+Une ligne de courant est une ligne tangente en tout point à $\mathbf{v}(x,y,z,t)$ à un instant donné. Approche d'Euler pour laquelle \[\ \frac{d \mathbf{x}}{d\lambda}=\mathbf{v}(\mathbf{x},t) \]\
+
+On écrit également \[\ \frac{dx}{v_x}=\frac{dy}{v_y}=\frac{dz}{v_z}\]\
+
+Ces équations découlent du fait qu'un léger déplacement $(dx,dy,dz)$ est parallèle à $\mathbf{v}(x,y,z)$\\
+
+Dans le cas d'un écoulement permanent, $\mathbf{v}$ explicitement indépendante du temps, alors les lignes de courant coïncident avec les trajectoires.\\
+
+Pour résumer dans le cas général (non permanent), les tangentes en tous points des lignes de courant donnent la vitesse en ces points à un instant donné. Tandis que les tangentes à la trajectoire donne la vitesse d'une particule unique à différents moments.\\
+
+\underline{Exemples} : Soit le champ des vitesses décrit par \[\ v_x=Kx \textrm{ et } v_y=-Ky \]\
+Ce courant est permanent puisque $t$ n'apparaît pas explicitement. On obtient \[\ \frac{dx}{Kx}=-\frac{dy}{Ky} \]\ qui donne après intégration $\ln x=-\ln y+\ln C$ et enfin $xy=C$.\\
+
+Soit le champ de vitesses décrit par \[\ v_x =\alpha yt \textrm{ et } v_y=\beta \]\
+
+Les trajectoires sont données par
+\begin{align*}
+y(t)&=y_0+\beta t\\
+x(t)&=x_+\frac{1}{2}\alpha y_0t^2+\frac{1}{3}\alpha\beta t^3
+\end{align*}
+
+Pour obtenir les lignes de courant, on pose \[\ \frac{d \mathbf{x}}{d\lambda}=\mathbf{v}(\mathbf{x}(\lambda),t) \]\ 
+
+On obtient alors 
+\begin{align*}
+y(\lambda)&=y_0+\beta \lambda\\
+x(\lambda)&=x_0+\alpha y_0 t\lambda + \frac{1}{2}\alpha\beta t \lambda^2
+\end{align*}
+
+où $t$ est un paramètre fixé. 
+
+\section{Équation de continuité}
+
+L'équation de continuité décrit la conservation de la masse du fluide. On considère un volume $V$ de l'espace, la masse passant par unité de temps de temps au travers d'une surface $d\mathbf{f}=\mathbf{n}df$ est égale à $\rho \mathbf{v}d\mathbf{f}$. On prendra par convention la direction de la normale $\mathbf{n}$ à la surface comme sortant du volume ; de telle sorte que $\rho \mathbf{v}d\mathbf{f} >0$ si le fluide sort du volume.\\
+
+La masse $M(t)$ contenue dans ce volume $V$ varie au cours du temps et prend la forme \[\ M(t)= \int_V \rho(\mathbf{x},t)dV  \]\
+
+La masse totale sortant par la surface entourant $V_0$ se note \[\ \oint_{\partial V} \rho \mathbf{v}d\mathbf{f}\]\
+
+Cette intégrale est égale à la variation temporelle de la masse comprise dans $V$ donc \[\ \frac{dM}{dt}=-\frac{\partial}{\partial t} \int \rho dV = \oint_{\partial V} \rho \mathbf{v}d\mathbf{f} \]\
+
+En utilisant le théorème de la divergence et le fait que ce soit vrai pour tout volume $V$, on écrit l'équation de continuité 
+\begin{equation}
+\frac{\partial \rho}{\partial t}+\nabla (\rho \mathbf{v})=0
+\end{equation}
+
+Que l'on peut développer sous la forme \[\ \frac{\partial \rho}{\partial t}+\rho\nabla \mathbf{v}+\mathbf{v}\nabla \rho =0 \]\
+
+\section{Équation d'Euler}
+
+Nous avons vu que la vitesse d'un fluide est décrite par la quantité $\mathbf{v}(x,y,z,t)$, la différentielle de $\mathbf{v}$ donne alors \[\ d\mathbf{v}=\frac{\partial \mathbf{v}}{\partial t}dt+\sum_i\frac{\partial \mathbf{v}}{\partial x_i} dx_i \]\
+
+L'accélération au sens de Lagrange est alors
+\begin{equation}
+\frac{d\mathbf{v}}{dt}\equiv\frac{D\mathbf{v}}{Dt} =\frac{\partial \mathbf{v}}{\partial t}+(\mathbf{v}\cdot\nabla)\mathbf{v}
+\end{equation}
+
+La dérivée $\frac{D}{Dt}$ est appelée dérivée particulaire, elle contient deux termes : la dérivée locale qui tient compte de la variation durant $dt$ en un point fixé de la grandeur mesurée (ici la vitesse du fluide), le second terme est la dérivée convective qui tient compte des variations spatiales de la grandeur lorsque l'on se déplace avec la particule dans le fluide.\\
+En somme, la dérivée particulaire d'une grandeur $G(\mathbf{x},t)$ permet d'exprimer la variation de cette grandeur quand on suit le déplacement d'une particule.\\
+
+Cette expression va nous permettre d'établir la seconde loi de Newton appliquée à la particule de fluide. La force pressante s'exerçant sur la particule de fluide est donné par \[\ -\oint pd\mathbf{f}=-\int dV \nabla p \]\ 
+L'équation du mouvement donne alors \[\ \rho\frac{d\mathbf{v}}{dt}=-\nabla p \]\
+On en déduit l'équation d'Euler 
+\begin{equation}
+\frac{\partial \mathbf{v}}{\partial t}+(\mathbf{v}\cdot\nabla)\mathbf{v}=-\frac{1}{\rho}\nabla p+\mathbf{g}
+\end{equation}
+où on a ajouté la force de pesanteur par unité de volume s'exerçant sur la particule de fluide.\\
+
+Les équations de continuité et d'Euler ne sont pas suffisantes pour connaître les quantités décrivant le fluide $(v_x,v_y,v_z,p,\rho)$ car il n'y a que 4 équations. Il faut donc compléter ce système.
+
+\subsection{Équation des fluides parfaits}
+
+Dans le cas d'un fluide pour lequel il n'y a pas de génération de chaleur (viscosité, conductivité thermique etc.), celui-ci est qualifié de parfait.\\
+Ainsi l'absence de transfert de chaleur entre les particules de fluide entraîne une adiabaticité du mouvement. La densité d'entropie $s$ est ainsi supposée constante.\\
+
+En utilisant l'enthalpie $H$, \[\ dH=TdS+Vdp = Vdp \sim \frac{1}{\rho}dp\]\ 
+La condition d'adiabaticité prend la forme vectorielle \[\ \frac{1}{\rho}\nabla p=\nabla H\]\
+
+On peut écrire l'équation d'Euler sous la forme 
+\begin{equation}
+\frac{\partial \mathbf{v}}{\partial t}+(\mathbf{v}\cdot\nabla)\mathbf{v}=-\nabla(H+U)
+\end{equation}
+où $U$ est le potentiel associé à $\mathbf{g}$ tel que $\mathbf{g}=-\nabla U$.
+
+\section{Hydrostatique}
+
+L'hydrostatique est l'étude des fluides au repos. Ceci simplifie l'équation d'Euler qui devient simplement
+\begin{equation}
+\nabla p =\rho \mathbf{g}=-\rho \nabla U
+\end{equation}
+
+Si on suppose que $\rho$ est uniforme dans le volume et que $p$ ne dépend que de $z$, on peut alors connaître la pression en tout point de hauteur $z$ 
+\begin{equation}
+p(z)=-\rho gz+C
+\end{equation}
+
+Si le fluide a une surface libre de hauteur $h$ sur laquelle s'exerce une pression $p_0$, cette surface est horizontale. On peut donc exprimer la constante pour obtenir 
+\begin{equation}
+p(z)=p_0+\rho g(h-z)
+\end{equation}
+
+Remarque I : Si le fluide est tellement étendu que $\mathbf{g}$ ne peut plus être considéré comme uniforme. On utilise le potentiel gravitationnel $\phi$ tel que \[\ \nabla ^2\phi = 4\pi G\rho \]\ 
+L'équation de l'hydrostatique donne \[\ \nabla p = -\rho \nabla \phi \]\
+Ce qui peut être mis sous la forme \[\ \nabla \bigg (\frac{1}{\rho}\nabla p \bigg )=-4\pi G\rho \]\
+
+Remarque II : On sait que $\nabla p$ est normal à une surface $p=$constante, de même pour $\nabla U$. L'équation de l'hydrostatique nous informe donc que les surfaces isobares sont également des surfaces équipotentielles.\\
+Dans un référentiel non inertiel \[\ U=gz+\mathbf{a\cdot r}-\frac{1}{2}(\mathbf{\Omega} \times \mathbf{r})^2 \]\
+
+\subsection{Poussée d'Archimède}
+
+Soit un corps en partie immergé dans un fluide, la force pressante agissant sur la partie immergée est \[\ \mathbf{F}=-\oint P\mathbf{n}df = - \int dV\nabla p \]\ 
+En utilisant la loi de l'hydrostatique \[\ \mathbf{F}=-\int \rho\mathbf{g}dV=-\mathbf{g}\int \rho dV \]\
+où $\int \rho dV$ est la masse de la partie immergée dans le fluide.\\
+
+On écrit la poussée d'Archimède $\mathbf{P}_{Arch}$ comme
+\begin{equation}
+\label{Arch}
+\mathbf{P}_{Arch}=-\mathbf{g}\int \rho dV
+\end{equation}
+
+La poussée d'Archimède est alors le poids du fluide déplacé par le corps. Pour qu'un corps flotte, il faut que le poids de ce corps soit égal au poids du fluide déplacé.\\
+
+\section{Équation de Bernoulli}
+\label{Bernoulli}
+
+L'analyse vectorielle nous donne que \[\ (\mathbf{v}\cdot\nabla)\mathbf{v} = \frac{1}{2}\nabla v^2-\mathbf{v}\times(\nabla \times \mathbf{v}) \]\
+
+En notation indicielle, la composante $i$ du produit vectoriel $\mathbf{c}=\mathbf{a}\times \mathbf{b}$ s'exprime\[\ c_i=\sum_{j,k\ne i}\epsilon_{ijk}a_jb_k\]\
+
+On peut donc écrire 
+\begin{align*}
+\mathbf{v}\times(\nabla \times \mathbf{v})_s &= \sum_{j,i\ne s} \epsilon_{sji}v_j(\nabla \times \mathbf{v})_i \\
+& = \sum_{j,i,k,m\ne s} \epsilon_{sji}v_j\epsilon_{ikm}\partial_kv_m
+\end{align*}
+
+Le symbole de Levi-Civita $\epsilon_{ijk}$ est tel que $\epsilon_{ijk}=\epsilon_{kij}=-\epsilon_{jik}$. Permutations indices. Une de leurs propriétés est \[\ \sum_i \epsilon_{ijk}\epsilon_{imn}=\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km} \]\
+
+On obtient donc 
+\begin{align*}
+\mathbf{v}\times(\nabla \times \mathbf{v})_s & = \sum_{j,k,m\ne s} (\delta_{sk}\delta_{jm}-\delta_{sm}\delta_{jk})v_j\partial_kv_m\\
+&= \sum_m v_m\partial_s v_m - \sum_k v_k\partial_k v_s\\
+&=\frac{1}{2}\partial_s\sum_m v_m^2-\sum_kv_k\partial_k v_s
+\end{align*}
+
+En sommant sur les composantes $s$, on retrouve bien l'expression souhaitée.\\
+
+On peut alors mettre l'équation d'Euler sous la forme 
+\begin{equation}
+\frac{\partial \mathbf{v}}{\partial t}+\frac{1}{2}\nabla v^2-\mathbf{v}\times(\nabla \times \mathbf{v})=-\nabla (H+U)
+\end{equation}
+
+Ou encore la forme de Lambe
+\begin{equation}
+\frac{\partial \mathbf{v}}{\partial t}-\mathbf{v}\times(\nabla \times \mathbf{v})=-\nabla (H+U+ \frac{1}{2} v^2)
+\end{equation}
+
+\subsection{Écoulements statiques et permanents}
+
+Dans le cas statique $\mathbf{v}=0$, on retombe bien sur l'équation de l'hydrostatique \[\ \nabla(H+U)=\frac{1}{\rho}\nabla p - g=0 \]\ 
+
+Dans le cadre d'un écoulement permanent, i.e. $\frac{\partial \mathbf{v}}{\partial t}=0$, l'équation d'Euler prend une forme simplifiée \[\ (\mathbf{v}\cdot\nabla)\mathbf{v}=\frac{1}{2}\nabla v^2-\mathbf{v}\times(\nabla \times \mathbf{v})=-\nabla(H+U) \]\
+
+De plus, on a vu que dans le cas stationnaire, lignes de courant et trajectoires sont confondues. Ce qui équivaut à écrire \[\ \frac{d \mathbf{x}}{d\lambda}=\mathbf{v}=\frac{d \mathbf{x}}{dt} \rightarrow \lambda = t \]\
+
+On sait que la direction de la vitesse est tangente en tout point de la ligne de courant. Soit $\mathbf{l}$ le vecteur unitaire dans cette direction telle que $\mathbf{v}=v\mathbf{l}$ en tout point de la ligne de courant.\\
+
+Si on projette l'équation de Lambe stationnaire sur $\mathbf{l}$, on obtient \[\  \frac{\partial}{\partial l}(\frac{1}{2}v^2+H+U)=0 \]\
+
+Ce qui veut dire que la quantité $\frac{1}{2}v^2+H+U$ est conservée le long d'une ligne de courant.\\
+
+Remarque : Dérivée directionnelle. La dérivée totale d'une fonction $f(x,y)$ est égale à \[\ df =\frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy = (\nabla f)\cdot \mathbf{dl}\]
+
+On en déduit que \[\ \frac{df}{dl}=(\nabla f)\cdot \mathbf{u}_l \]\ 
+
+\subsection{Écoulement irrotationnel}
+
+Pour un champ des vitesses irrotationnel i.e. $\nabla \times \mathbf{v}=0$, on peut mettre la vitesse sous la forme $\mathbf{v}=\nabla \varphi$ où $\varphi$ est le potentiel vitesse défini à une fonction du temps près (voir Remarque).\\
+
+La forme de Lambe de l'équation d'Euler devient alors \[\ \nabla (H+U+\frac{v^2}{2}+\frac{\partial \varphi}{\partial t})=0 \]\
+Ce qui entraîne que \[\ H+U+\frac{v^2}{2}+\frac{\partial \varphi}{\partial t}=f(t)+C \]\
+
+Remarque : Si on définit le potentiel $\tilde{\varphi}=\varphi-\psi(t)$, tel que $f(t)=\frac{\partial \psi}{\partial t}$, alors cela ne change rien aux équations.
+
+\section{Flux d'impulsion}
+
+On définit l'impulsion par unité de volume comme $\rho\mathbf{v}$. On exprime sa variation temporelle par \[\ \frac{\partial (\rho v_i)}{\partial t}=\rho\frac{\partial v_i}{\partial t}+\frac{\partial \rho}{\partial t}v_i\]\
+
+Par la suite, toute sommation sur un indice $i$ sera supposé si cette indice est présent deux fois dans un terme. Cet indice est dit muet et peut être remplacé par un autre.\\
+
+L'équation de continuité donne \[\ \frac{\partial \rho}{\partial t} = - \frac{\partial (\rho v_k)}{\partial x_k} \]\
+Et l'équation d'Euler\[\ \frac{\partial v_i}{\partial t}=-v_k\frac{\partial v_i}{\partial x_k}-\frac{1}{\rho}\frac{\partial p}{\partial x_i} \]\
+
+La variation de l'impulsion projetée sur $i$ vaut donc \[\ \frac{\partial (\rho v_i)}{\partial t}=-\rho v_k\frac{\partial v_i}{\partial x_k}-\frac{\partial p}{\partial x_i}-v_i\frac{\partial (\rho v_k)}{\partial x_k} \]\
+
+Que l'on peut intégrer en \[\ \frac{\partial (\rho v_i)}{\partial t}=-\frac{\partial p}{\partial x_i}-\frac{\partial(\rho v_i v_k)}{\partial x_k}\]\
+
+On introduit le tenseur de densité du flux d'impulsion $\Pi_{ik}$ défini comme \[\ \Pi_{ik}=p\delta_{ik}+\rho v_i v_k = \Pi_{ki}\]\ 
+pour écrire 
+\begin{equation}
+\frac{\partial (\rho v_i)}{\partial x_k}=-\frac{\partial \Pi_{ik}}{\partial x_k}
+\end{equation}
+
+En intégrant cette formule sur un volume $V$ \[\ \frac{\partial }{\partial t}\int \rho v_i dV=-\int \frac{\partial \Pi_{ik}}{\partial x_k}dV=-\oint \Pi_{ik}df_k \]\
+
+Cette expression montre que la variation temporelle de la composante $i$ de l'impulsion comprise dans le volume est égale au flux d'impulsion de composante $i$ sortant par la surface perpendiculaire à la direction $k$, $df_k=n_kdf$.\\
+
+Remarque : Le tenseur de densité du flux d'impulsion prend la forme vectorielle \[\  p\mathbf{n}+\rho\mathbf{n}(\mathbf{n\cdot v})\]\
+Dans le cas où $\mathbf{v}$ est parallèle à $\mathbf{n}$, alors la valeur du tenseur est $p+\rho v^2$. Alors que si $\mathbf{v}$ est perpendiculaire à $\mathbf{n}$, ce même tenseur vaut $p$.
+
+\section{Conservation de la circulation}
+
+On définit la notion de circulation du vecteur vitesse autour d'un contour fermé comme l'intégrale \[\ \Gamma = \oint \mathbf{v\cdot}d\mathbf{l}=\int (\nabla\times\mathbf{v})d\mathbf{f}\]\
+
+On suppose que ce contour est formé de particules de fluides en mouvement, on va donc regarder comme évolue la circulation lorsque ce contour est en mouvement. \[\ \frac{D \Gamma}{Dt}=\frac{D}{Dt}\oint \mathbf{v\cdot}d\mathbf{l} = \oint \frac{D\mathbf{v}}{Dt}d\mathbf{l}+ \oint\mathbf{v}\frac{Dd\mathbf{l}}{Dt} \]\
+
+Dans la première intégrale, on reconnaît la dérivée particulaire de la vitesse. D'après l'équation d'Euler, $\frac{D\mathbf{v}}{Dt}=-\nabla(H+U)$. Le théorème de Stokes donne cette première intégrale nulle car $\nabla \times (\nabla f)=0$ pour tout $f$.\\
+
+La seconde intégrale donne \[\ \oint\mathbf{v}(\nabla \mathbf{v})d\mathbf{l}=\oint\nabla(\frac{v^2}{2})d\mathbf{l}\]\
+
+Qui vaut également 0 d'après Stokes. On obtient finalement que la circulation autour d'un contour fermé est constante. \emph{Théorème de Kelvin} : 
+\begin{equation}
+\frac{D}{Dt}\oint \mathbf{v}d\mathbf{l}=0
+\end{equation}
+
+Remarque I : Calcul de $\frac{Dd\mathbf{l}}{Dt}=\mathbf{v}(\nabla \mathbf{v})$\\
+En fait, $\frac{Dd\mathbf{l}}{Dt}=d\mathbf{v}$ et $\mathbf{v}d\mathbf{v}=\mathbf{v}(\nabla \mathbf{v}\cdot d\mathbf{l})$\\
+On peut aussi utiliser le fait que $\mathbf{v}d\mathbf{v}=1/2d(v^2)$ et que l'intégrale de contour d'une différentielle totale est nulle.\\
+
+Remarque II : Ce théorème n'est vrai que lorsque $\rho$ est constante, le fluide est non visqueux et si les forces dérivent d'un potentiel.
+
+
+\section{Écoulement potentiel}
+
+Nous avons déjà évoqué certains de ces écoulements dans la section \ref{Bernoulli}. \\
+On va utiliser le théorème de Kelvin pour montrer la conservation de la vorticité le long d'un trajectoire particulaire.\\
+
+On se place dans un écoulement permanent pour lequel lignes de courant et trajectoires sont confondues. On considère une ligne de courant pour laquelle on sait que $\mathbf{\omega} \equiv \nabla \times \mathbf{v}=0$ (vorticité) en un point.\\
+On suppose un contour infinitésimal fermé autour de ce point, le théorème de Stokes \[\ \int \mathbf{\omega} d\mathbf{f} \]\
+Or cette intégrale est nulle car nous avons pris un point où la vorticité est nulle.\\
+
+Au cours du temps, le contour évolue autour de la même ligne de courant. Puisque la circulation du vecteur vitesse doit rester constante d'après le théorème de Kelvin, on peut conclure que $\mathbf{\omega}=0$ en tout point de la ligne de courant.\\
+
+On appelle fluide irrotationnel tout fluide avec un écoulement permanent pour lequel $\omega=0$ sur chaque ligne de courant.
+
+\section{Fluides incompressibles}
+
+Dans le cas où la densité d'un fluide ne dépend ni de l'espace ni du temps, on parle de fluide incompressible. En utilisant l'équation de continuité, pour un fluide incompressible \[\ \nabla \mathbf{v}=0 \]\
+
+On peut également écrire $\nabla H =\nabla(\frac{p}{\rho})$ pour obtenir l'équation de Bernoulli stationnaire sous la forme \[\ \frac{p}{\rho}+\frac{v^2}{2}+U=\textrm{constante}\]\
+On remarque alors que si on omet la présence d'un champ gravitationnel, la vitesse d'un fluide et la pression en un point son reliées. La pression est plus forte dans des zones de faibles vitesses.\\
+
+On a vu que dans le cas d'un fluide irrotationnel, on peut introduire une vitesse potentielle $\varphi$. Pour un fluide incompressible, \[\ \nabla \mathbf{v}=\nabla ^2 \varphi=0\]\
+Dans le cas d'un fluide irrotationnel + incompressible, l'équation de Bernoulli prend la forme 
+\[\ \frac{\partial \varphi}{\partial t}+\frac{p}{\rho}+\frac{1}{2}(\nabla \varphi)^2+U=\textrm{constante} \]\
+
+Le problème revient alors à résoudre une équation de Laplace pour ensuivre extraire $p$.
+
+
+\end{document}
